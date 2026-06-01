@@ -28,6 +28,7 @@ async def lifespan(app: FastAPI):
 app = FastAPI(
     title="Inventory & Order Management API",
     lifespan=lifespan,
+    redirect_slashes=False,
 )
 
 app.add_middleware(
