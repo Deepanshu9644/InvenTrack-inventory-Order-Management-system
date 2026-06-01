@@ -8,12 +8,12 @@ from app.schemas.order import OrderCreate, OrderResponse
 router = APIRouter(prefix="/api/orders", tags=["Orders"])
 
 
-@router.get("/", response_model=list[OrderResponse])
+@router.get("", response_model=list[OrderResponse])
 async def list_orders(db: AsyncSession = Depends(get_db)):
     return await order_crud.get_orders(db)
 
 
-@router.post("/", response_model=OrderResponse, status_code=201)
+@router.post("", response_model=OrderResponse, status_code=201)
 async def create_order(
     order_data: OrderCreate, db: AsyncSession = Depends(get_db)
 ):

@@ -8,12 +8,12 @@ from app.schemas.customer import CustomerCreate, CustomerResponse
 router = APIRouter(prefix="/api/customers", tags=["Customers"])
 
 
-@router.get("/", response_model=list[CustomerResponse])
+@router.get("", response_model=list[CustomerResponse])
 async def list_customers(db: AsyncSession = Depends(get_db)):
     return await customer_crud.get_customers(db)
 
 
-@router.post("/", response_model=CustomerResponse, status_code=201)
+@router.post("", response_model=CustomerResponse, status_code=201)
 async def create_customer(
     customer_data: CustomerCreate, db: AsyncSession = Depends(get_db)
 ):

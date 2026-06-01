@@ -8,7 +8,7 @@ from app.schemas.product import ProductCreate, ProductResponse, ProductUpdate
 router = APIRouter(prefix="/api/products", tags=["Products"])
 
 
-@router.get("/", response_model=list[ProductResponse])
+@router.get("", response_model=list[ProductResponse])
 async def list_products(db: AsyncSession = Depends(get_db)):
     return await product_crud.get_products(db)
 
@@ -21,7 +21,7 @@ async def get_low_stock_products(
     return await product_crud.get_low_stock_products(db, threshold)
 
 
-@router.post("/", response_model=ProductResponse, status_code=201)
+@router.post("", response_model=ProductResponse, status_code=201)
 async def create_product(
     product_data: ProductCreate, db: AsyncSession = Depends(get_db)
 ):
